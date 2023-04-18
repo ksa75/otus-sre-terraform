@@ -3,7 +3,7 @@ variable kubectl_config_context_name {
 }
 
 variable kubectl_config_path {
-  default = "/home/admkirillov/.kube/custom-contexts/k0admin/admin.yml"
+  default = "~/.kube/custom-contexts/k0admin/admin.yml"
 }
 
 variable name_of_ns {
