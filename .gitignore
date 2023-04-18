@@ -1,0 +1,15 @@
+**/*.swp
+**/*.tmp
+**/*.key
+**/*.pem
+**/*.csr
+**/*.crt
+**/*.srl
+**/*.kubeconf1
+**/*.kubeconf1.*
+**/*.kubeconf
+**/*.kubeconf.*
+**/*.admin*
+**/.history
+**/.vs
+~
