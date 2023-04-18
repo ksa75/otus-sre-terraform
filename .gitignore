@@ -12,4 +12,7 @@
 **/*.admin*
 **/.history
 **/.vs
-~
+**/tfstate.backup
+**/tfstate
+**/.terraform*
+**/terraform*
