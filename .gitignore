@@ -12,7 +12,6 @@
 **/*.admin*
 **/.history
 **/.vs
-**/tfstate.backup
-**/tfstate
+**/terraform.tfstate.backup
+**/terraform.tfstate
 **/.terraform*
-**/terraform*
