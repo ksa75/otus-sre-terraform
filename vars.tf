@@ -9,3 +9,24 @@ variable kubectl_config_path {
 variable name_of_ns {
   default = "my-first-tf-namespace"
 }
+
+# variable resource_quotas_hard {
+# }
+# 
+# variable resource_quotas_scopes {
+# }
+
+variable resource_quotas {
+  type = map  
+}
+
+# variable resource_quotas_scopeSelector {
+# }
+
+variable rolebinds {
+  type = map
+}
+
+variable roles {
+  type = map
+}
