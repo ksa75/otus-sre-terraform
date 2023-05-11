@@ -1,32 +1,26 @@
-variable kubectl_config_context_name {
+variable "kubectl_config_context_name" {
+  type    = string
   default = "kubernetes0-admin@kubernetes0"
 }
 
-variable kubectl_config_path {
+variable "kubectl_config_path" {
+  type    = string
   default = "~/.kube/custom-contexts/k0admin/admin.yml"
 }
 
-variable name_of_ns {
+variable "name_of_ns" {
+  type    = string
   default = "my-first-tf-namespace"
 }
 
-# variable resource_quotas_hard {
-# }
-# 
-# variable resource_quotas_scopes {
-# }
-
-variable resource_quotas {
-  type = map  
+variable "resource_quotas" {
+  type = map(any)
 }
 
-# variable resource_quotas_scopeSelector {
-# }
-
-variable rolebinds {
-  type = map
+variable "rolebinds" {
+  type = map(any)
 }
 
-variable roles {
-  type = map
+variable "roles" {
+  type = map(any)
 }

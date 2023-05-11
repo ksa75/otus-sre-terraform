@@ -1,19 +1,19 @@
 
-name_of_ns           = "my-first-tf-namespace"
+name_of_ns = "my-first-tf-namespace"
 
-resource_quotas ={
+resource_quotas = {
   quote1 = {
     metadata = {
       name = "pods-high"
     }
-    spec = { 
+    spec = {
       hard = {
-        cpu = "1000"
+        cpu    = "1000"
         memory = "200Gi"
-        pods =  "10"
+        pods   = "10"
       }
-      scopes = []
-      scopeSelector = {matchExpressions = [{operator = "In", scopeName = "PriorityClass", values = ["high"]}]}
+      scopes        = []
+      scopeSelector = { matchExpressions = [{ operator = "In", scopeName = "PriorityClass", values = ["high"] }] }
     }
   }
 
@@ -21,14 +21,14 @@ resource_quotas ={
     metadata = {
       name = "pods-medium"
     }
-    spec = { 
+    spec = {
       hard = {
-        cpu = "10"
+        cpu    = "10"
         memory = "20Gi"
-        pods =  "10"
+        pods   = "10"
       }
-      scopes = []
-      scopeSelector = {matchExpressions = [{operator = "In", scopeName = "PriorityClass", values = ["medium"]}]}
+      scopes        = []
+      scopeSelector = { matchExpressions = [{ operator = "In", scopeName = "PriorityClass", values = ["medium"] }] }
     }
   }
 
@@ -36,14 +36,14 @@ resource_quotas ={
     metadata = {
       name = "pods-low"
     }
-    spec = { 
+    spec = {
       hard = {
-        cpu = "5"
+        cpu    = "5"
         memory = "10Gi"
-        pods =  "10"
+        pods   = "10"
       }
-      scopes = []
-      scopeSelector = {matchExpressions = [{operator = "In", scopeName = "PriorityClass", values = ["low"]}]}
+      scopes        = []
+      scopeSelector = { matchExpressions = [{ operator = "In", scopeName = "PriorityClass", values = ["low"] }] }
     }
   }
 
@@ -51,12 +51,12 @@ resource_quotas ={
     metadata = {
       name = "test"
     }
-    spec = { 
+    spec = {
       hard = {
-        pods =  "10"
+        pods = "10"
       }
-      scopes = ["BestEffort"]
-      scopeSelector = {matchExpressions = [{operator = "NotIn", scopeName = "PriorityClass", values = ["NotExistingClass"]}]}
+      scopes        = ["BestEffort"]
+      scopeSelector = { matchExpressions = [{ operator = "NotIn", scopeName = "PriorityClass", values = ["NotExistingClass"] }] }
     }
   }
 
@@ -64,17 +64,17 @@ resource_quotas ={
     metadata = {
       name = "reqsandlims"
     }
-    spec = { 
+    spec = {
       hard = {
-       "requests.cpu" = "1"
-       "requests.memory" = "1Gi"
-       "limits.cpu"    = "2"
-       "limits.memory" = "2Gi"
+        "requests.cpu"    = "1"
+        "requests.memory" = "1Gi"
+        "limits.cpu"      = "2"
+        "limits.memory"   = "2Gi"
       }
-      scopes = []
-      scopeSelector = {matchExpressions = [{operator = "NotIn", scopeName = "PriorityClass", values = ["NotExistingClass"]}]}
+      scopes        = []
+      scopeSelector = { matchExpressions = [{ operator = "NotIn", scopeName = "PriorityClass", values = ["NotExistingClass"] }] }
     }
-  }  
+  }
 
 }
 
@@ -82,63 +82,63 @@ resource_quotas ={
 roles = {
   role1 = {
     metadata = {
-      name = "role1"
-      labels = {mode = "tf"}
-    }    
+      name   = "role1"
+      labels = { mode = "tf" }
+    }
     rules = [{
       api_groups     = [""]
       resources      = ["pods"]
       resource_names = ["foo"]
       verbs          = ["get", "list", "watch"]
-    },
-    {
-      api_groups     = ["apps"]
-      resources      = ["deployments"]
-      resource_names = [""]      
-      verbs          = ["get", "list"]      
+      },
+      {
+        api_groups     = ["apps"]
+        resources      = ["deployments"]
+        resource_names = [""]
+        verbs          = ["get", "list"]
     }]
   }
   role2 = {
     metadata = {
-      name = "role2"
-      labels = {mode = "tf"}
+      name   = "role2"
+      labels = { mode = "tf" }
     }
     rules = [{
       api_groups     = ["apps"]
       resources      = ["deployments"]
-      resource_names = []      
+      resource_names = []
       verbs          = ["get", "list"]
-    },]
-  }  
+    }, ]
+  }
 }
 
 rolebinds = {
   rolebind1 = {
     metadata = {
-      name      = "rolebind1"
+      name = "rolebind1"
     }
     role_ref = {
       api_group = "rbac.authorization.k8s.io"
       kind      = "Role"
       name      = "admin"
     }
-    subjects  = [{
+    subjects = [{
       kind      = "User"
       name      = "admin"
       api_group = "rbac.authorization.k8s.io"
       namespace = ""
-    },
-    {
-      kind      = "ServiceAccount"
-      name      = "default"
-      api_group = ""            #!4sa
-      namespace = "kube-system" #only4sa
-    },
-    {
-      kind      = "Group"
-      name      = "system:masters"
-      api_group = "rbac.authorization.k8s.io"
-      namespace = ""
-    },]
+      },
+      {
+        kind      = "ServiceAccount"
+        name      = "default"
+        api_group = ""            #!4sa
+        namespace = "kube-system" #only4sa
+      },
+      {
+        kind      = "Group"
+        name      = "system:masters"
+        api_group = "rbac.authorization.k8s.io"
+        namespace = ""
+    }, ]
   }
 }   
